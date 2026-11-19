@@ -1,0 +1,937 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salud Contigo | Plataforma Accesible</title>
+
+<style>
+:root {
+  --primary: #087e78;
+  --primary-dark: #075c58;
+  --background: #f2f8f7;
+  --surface: #ffffff;
+  --text: #183331;
+  --muted: #536b69;
+  --border: #d5e5e2;
+  --focus: #f2a900;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 17px;
+}
+
+body.high-contrast {
+  --primary: #000000;
+  --primary-dark: #000000;
+  --background: #ffffff;
+  --surface: #ffffff;
+  --text: #000000;
+  --muted: #222222;
+  --border: #000000;
+}
+
+body.large-text {
+  font-size: 21px;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible, a:focus-visible,
+input:focus-visible, select:focus-visible {
+  outline: 4px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.topbar {
+  background: var(--primary-dark);
+  color: white;
+  padding: 12px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.topbar button {
+  background: white;
+  color: #064d49;
+  border: 0;
+  padding: 10px 16px;
+  border-radius: 9px;
+  font-weight: bold;
+}
+
+header {
+  background: var(--surface);
+  padding: 18px 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  color: var(--primary);
+  font-size: 27px;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+nav button {
+  background: transparent;
+  color: var(--text);
+  border: 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+nav button:hover {
+  background: var(--background);
+}
+
+main {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 28px 0 60px;
+}
+
+.hero {
+  background: #e1f3ef;
+  border-radius: 22px;
+  padding: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+body.high-contrast .hero {
+  background: white;
+  border: 2px solid black;
+}
+
+.hero-content {
+  flex: 1 1 330px;
+}
+
+.hero h1 {
+  font-size: clamp(30px, 4vw, 46px);
+  line-height: 1.2;
+  margin: 0 0 15px;
+}
+
+.hero p {
+  font-size: 19px;
+  max-width: 570px;
+  color: var(--muted);
+}
+
+.hero-image {
+  font-size: 110px;
+  text-align: center;
+  flex: 0 1 200px;
+}
+
+.primary-btn, .secondary-btn {
+  border: 0;
+  padding: 15px 22px;
+  border-radius: 12px;
+  font-weight: bold;
+  min-height: 54px;
+}
+
+.primary-btn {
+  background: var(--primary);
+  color: white;
+}
+
+.primary-btn:hover {
+  background: var(--primary-dark);
+}
+
+.secondary-btn {
+  background: #e6f3f1;
+  color: #075c58;
+}
+
+.section {
+  margin-top: 38px;
+}
+
+.section h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.section-intro {
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: var(--surface);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.card h3 {
+  margin: 8px 0;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.card-icon {
+  font-size: 38px;
+}
+
+.card button {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.access-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 25px;
+}
+
+.access-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.access-buttons button {
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  min-height: 48px;
+}
+
+.voice-box {
+  background: #e5f3f1;
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+}
+
+body.high-contrast .voice-box {
+  background: white;
+  border: 2px solid black;
+}
+
+.mic-button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  font-size: 36px;
+  display: block;
+  margin: 15px auto;
+}
+
+.voice-status {
+  text-align: center;
+  font-weight: bold;
+  min-height: 30px;
+}
+
+.voice-examples {
+  text-align: center;
+  color: var(--muted);
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+form {
+  display: grid;
+  gap: 16px;
+  max-width: 650px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px;
+  min-height: 52px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.appointment {
+  padding: 18px;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.notice {
+  background: #fff6d9;
+  color: #503d00;
+  border-radius: 10px;
+  padding: 14px;
+  margin-top: 15px;
+}
+
+body.high-contrast .notice {
+  border: 2px solid black;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--primary-dark);
+  color: white;
+}
+
+footer p {
+  margin: 5px;
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #123b38;
+  color: white;
+  padding: 16px 22px;
+  border-radius: 12px;
+  z-index: 100;
+  display: none;
+  width: max-content;
+  max-width: 90%;
+}
+
+@media (max-width: 650px) {
+  header {
+    justify-content: center;
+  }
+  nav {
+    width: 100%;
+  }
+  nav button {
+    flex: 1 1 40%;
+  }
+  .hero {
+    padding: 24px;
+  }
+  main {
+    width: 92%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <span>♿ Plataforma inclusiva para todos</span>
+  <div>
+    <button onclick="toggleContrast()">◐ Contraste</button>
+    <button onclick="toggleText()">A+ Texto</button>
+  </div>
+</div>
+
+<header>
+  <div class="logo">✚ Salud Contigo</div>
+  <nav aria-label="Navegación principal">
+    <button onclick="showPage('home')">Inicio</button>
+    <button onclick="showPage('medical')">Consultas</button>
+    <button onclick="showPage('booking')">Reservar cita</button>
+    <button onclick="showPage('appointments')">Mis turnos</button>
+    <button onclick="showPage('education')">Aprende</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- INICIO -->
+<section id="home" class="page active">
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Tu salud, más cerca y para todos.</h1>
+      <p>
+        Encuentra información de salud, reserva tus citas y recibe asistencia
+        de manera sencilla. Estamos aquí para ayudarte.
+      </p>
+      <button class="primary-btn" onclick="showPage('booking')">
+        📅 Reservar una cita
+      </button>
+      <button class="secondary-btn" onclick="showPage('appointments')">
+        Ver mis turnos
+      </button>
+    </div>
+    <div class="hero-image" aria-hidden="true">🩺</div>
+  </div>
+
+  <div class="access-panel">
+    <h2>Personaliza tu experiencia</h2>
+    <p>Adapta la página a tus necesidades.</p>
+    <div class="access-buttons">
+      <button onclick="toggleContrast()">◐ Activar alto contraste</button>
+      <button onclick="toggleText()">A+ Aumentar texto</button>
+      <button onclick="speak('Bienvenido a Salud Contigo. Puedes reservar citas, ver tus turnos o consultar información médica.')">🔊 Escuchar bienvenida</button>
+      <button onclick="stopSpeech()">🔇 Detener lectura</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>¿Qué necesitas hoy?</h2>
+    <p class="section-intro">Accede rápidamente a nuestros servicios.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🩺</div>
+        <h3>Consulta médica</h3>
+        <p>Conoce nuestras especialidades y recibe orientación de salud básica.</p>
+        <button class="primary-btn" onclick="showPage('medical')">Ver consultas</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📅</div>
+        <h3>Reservar turno</h3>
+        <p>Solicita una cita en el centro de salud de manera sencilla.</p>
+        <button class="primary-btn" onclick="showPage('booking')">Solicitar cita</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🗓️</div>
+        <h3>Mis turnos</h3>
+        <p>Consulta tus próximas citas y revisa tus reservas.</p>
+        <button class="primary-btn" onclick="showPage('appointments')">Ver mis turnos</button>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📚</div>
+        <h3>Educación en salud</h3>
+        <p>Aprende a cuidar tu salud con consejos y contenido informativo.</p>
+        <button class="primary-btn" onclick="showPage('education')">Aprender</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section voice-box">
+    <h2 style="text-align:center">🎙️ Asistente de voz</h2>
+    <p style="text-align:center">
+      Navega por la plataforma utilizando tu voz, sin necesidad de utilizar el mouse.
+    </p>
+    <button class="mic-button" onclick="startVoice()" aria-label="Activar reconocimiento de voz">🎤</button>
+    <p id="voiceStatus" class="voice-status" aria-live="polite">Presiona el micrófono para hablar.</p>
+    <div class="voice-examples">
+      <p>Prueba diciendo:</p>
+      <strong>“Inicio” · “Ver turnos” · “Reservar” · “Ayuda” · “Salir”</strong>
+    </div>
+  </div>
+</section>
+
+<!-- CONSULTAS -->
+<section id="medical" class="page">
+  <h1>Consultas médicas</h1>
+  <p class="section-intro">Encuentra la especialidad que necesitas.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">🩺</div>
+      <h3>Medicina general</h3>
+      <p>Atención primaria, evaluación general y orientación de salud.</p>
+      <button class="primary-btn" onclick="bookSpecialty('Medicina general')">Solicitar turno</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🧒</div>
+      <h3>Pediatría</h3>
+      <p>Atención y cuidado de la salud infantil.</p>
+      <button class="primary-btn" onclick="bookSpecialty('Pediatría')">Solicitar turno</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🦷</div>
+      <h3>Odontología</h3>
+      <p>Cuidado bucal, prevención y orientación odontológica.</p>
+      <button class="primary-btn" onclick="bookSpecialty('Odontología')">Solicitar turno</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h3>Psicología</h3>
+      <p>Orientación y apoyo para el bienestar emocional.</p>
+      <button class="primary-btn" onclick="bookSpecialty('Psicología')">Solicitar turno</button>
+    </div>
+  </div>
+
+  <div class="notice">
+    Esta plataforma brinda información educativa general. No reemplaza
+    una evaluación, diagnóstico ni tratamiento de un profesional de salud.
+  </div>
+</section>
+
+<!-- RESERVAR -->
+<section id="booking" class="page">
+  <h1>Solicitar una cita médica</h1>
+  <p class="section-intro">Completa los siguientes datos para reservar tu turno.</p>
+
+  <div class="card">
+    <form id="bookingForm">
+      <div>
+        <label for="patient">Nombre completo</label>
+        <input id="patient" type="text" placeholder="Escribe tu nombre" required>
+      </div>
+
+      <div>
+        <label for="specialty">Especialidad médica</label>
+        <select id="specialty" required>
+          <option value="">Selecciona una especialidad</option>
+          <option>Medicina general</option>
+          <option>Pediatría</option>
+          <option>Odontología</option>
+          <option>Psicología</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="center">Centro de salud</label>
+        <select id="center" required>
+          <option value="">Selecciona un centro</option>
+          <option>Centro de Salud Comunitario Central</option>
+          <option>Centro de Salud Comunitario Norte</option>
+          <option>Centro de Salud Comunitario Sur</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="doctor">Profesional</label>
+        <select id="doctor" required>
+          <option value="">Selecciona un profesional</option>
+          <option>Dr. Carlos Mendoza</option>
+          <option>Dra. Ana Torres</option>
+          <option>Dr. Luis Ramírez</option>
+          <option>Dra. María Flores</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="date">Fecha de cita</label>
+        <input id="date" type="date" required>
+      </div>
+
+      <div>
+        <label for="time">Horario</label>
+        <select id="time" required>
+          <option value="">Selecciona un horario</option>
+          <option>08:00 a. m.</option>
+          <option>09:00 a. m.</option>
+          <option>10:00 a. m.</option>
+          <option>11:00 a. m.</option>
+          <option>02:00 p. m.</option>
+          <option>03:00 p. m.</option>
+        </select>
+      </div>
+
+      <button class="primary-btn" type="submit">Confirmar solicitud</button>
+      <button class="secondary-btn" type="button" onclick="showPage('home')">Regresar al inicio</button>
+    </form>
+  </div>
+</section>
+
+<!-- TURNOS -->
+<section id="appointments" class="page">
+  <h1>Mis próximos turnos</h1>
+  <p class="section-intro">Aquí puedes revisar las citas que has solicitado.</p>
+  <div id="appointmentList"></div>
+  <button class="primary-btn" onclick="showPage('booking')">+ Reservar nueva cita</button>
+</section>
+
+<!-- EDUCACIÓN -->
+<section id="education" class="page">
+  <h1>Aprende a cuidar tu salud</h1>
+  <p class="section-intro">Información educativa para tu bienestar y el de tu familia.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">💧</div>
+      <h3>Hidratación saludable</h3>
+      <p>Beber agua regularmente ayuda a mantener el organismo funcionando correctamente. Las necesidades varían según la persona, el clima y su salud.</p>
+      <button class="secondary-btn" onclick="speak('Mantener una hidratación adecuada ayuda a tu organismo. Bebe agua durante el día según tus necesidades.')">🔊 Escuchar</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🥗</div>
+      <h3>Alimentación equilibrada</h3>
+      <p>Incluye frutas, verduras, alimentos variados y hábitos de alimentación saludables.</p>
+      <button class="secondary-btn" onclick="speak('Procura una alimentación variada, incluye frutas, verduras y alimentos nutritivos.')">🔊 Escuchar</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🚶</div>
+      <h3>Actividad física</h3>
+      <p>Realiza actividad física adaptada a tus capacidades y evita permanecer sentado por largos periodos.</p>
+      <button class="secondary-btn" onclick="speak('Realiza actividad física adaptada a tus capacidades. Si tienes alguna condición, consulta con un profesional.')">🔊 Escuchar</button>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🛌</div>
+      <h3>Descanso</h3>
+      <p>Mantener una rutina de sueño contribuye al bienestar físico, mental y emocional.</p>
+      <button class="secondary-btn" onclick="speak('Mantén una rutina de descanso y procura dormir lo suficiente para tu edad y necesidades.')">🔊 Escuchar</button>
+    </div>
+  </div>
+</section>
+
+<!-- AYUDA -->
+<section id="help" class="page">
+  <h1>Centro de ayuda</h1>
+  <div class="card">
+    <h2>¿Cómo utilizar la plataforma?</h2>
+    <p>Utiliza los botones grandes para acceder a cada servicio o activa el micrófono para navegar con tu voz.</p>
+    <h3>Comandos de voz disponibles</h3>
+    <ul>
+      <li>“Inicio” — vuelve a la página principal.</li>
+      <li>“Ver turnos” — muestra tus citas.</li>
+      <li>“Reservar” — abre el formulario de citas.</li>
+      <li>“Ayuda” — abre esta sección.</li>
+      <li>“Salir” — muestra opciones para salir.</li>
+    </ul>
+    <button class="primary-btn" onclick="showPage('home')">Volver al inicio</button>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p><strong>✚ Salud Contigo</strong></p>
+  <p>Atención accesible, salud para todos.</p>
+  <p>Prototipo educativo de salud comunitaria.</p>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+// NAVEGACIÓN
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+
+  const target = document.getElementById(id);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  if (id === 'appointments') renderAppointments();
+}
+
+// ACCESIBILIDAD: CONTRASTE
+function toggleContrast() {
+  document.body.classList.toggle('high-contrast');
+  const enabled = document.body.classList.contains('high-contrast');
+  toast(enabled ? 'Alto contraste activado' : 'Alto contraste desactivado');
+}
+
+// ACCESIBILIDAD: TEXTO
+function toggleText() {
+  document.body.classList.toggle('large-text');
+  const enabled = document.body.classList.contains('large-text');
+  toast(enabled ? 'Texto aumentado' : 'Tamaño de texto normal');
+}
+
+// MENSAJES
+function toast(message) {
+  const box = document.getElementById('toast');
+  box.textContent = message;
+  box.style.display = 'block';
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => {
+    box.style.display = 'none';
+  }, 4000);
+}
+
+// LECTURA POR VOZ (TEXT TO SPEECH)
+function speak(message) {
+  if (!('speechSynthesis' in window)) {
+    toast('La lectura por voz no está disponible en este navegador.');
+    return;
+  }
+
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(message);
+  utterance.lang = 'es-PE';
+  utterance.rate = 0.95;
+  speechSynthesis.speak(utterance);
+}
+
+function stopSpeech() {
+  if ('speechSynthesis' in window) speechSynthesis.cancel();
+  toast('Lectura detenida');
+}
+
+// RECONOCIMIENTO DE VOZ (SPEECH TO TEXT)
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+let recognition;
+let listening = false;
+
+if (SpeechRecognition) {
+  recognition = new SpeechRecognition();
+  recognition.lang = 'es-PE';
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  recognition.onstart = function() {
+    listening = true;
+    document.getElementById('voiceStatus').textContent =
+      '🎙️ Te escucho... habla ahora.';
+  };
+
+  recognition.onresult = function(event) {
+    const command = event.results[0][0].transcript.toLowerCase().trim();
+    document.getElementById('voiceStatus').textContent =
+      'Escuché: "' + command + '"';
+    handleVoice(command);
+  };
+
+  recognition.onerror = function(event) {
+    listening = false;
+    document.getElementById('voiceStatus').textContent =
+      'No se pudo reconocer la voz. Intenta nuevamente.';
+    toast('Error de voz: ' + event.error);
+  };
+
+  recognition.onend = function() {
+    listening = false;
+    if (document.getElementById('voiceStatus').textContent.includes('Te escucho')) {
+      document.getElementById('voiceStatus').textContent =
+        'Micrófono desactivado. Puedes intentarlo de nuevo.';
+    }
+  };
+}
+
+// ACTIVAR MICRÓFONO
+function startVoice() {
+  if (!recognition) {
+    toast('Tu navegador no admite reconocimiento de voz. Prueba Google Chrome.');
+    speak('El reconocimiento de voz no está disponible. Puedes usar los botones de la pantalla.');
+    return;
+  }
+
+  if (listening) {
+    recognition.stop();
+    return;
+  }
+
+  try {
+    recognition.start();
+  } catch (error) {
+    toast('Espera un momento y vuelve a activar el micrófono.');
+  }
+}
+
+// PROCESAR COMANDOS
+function handleVoice(command) {
+  if (command.includes('inicio') || command.includes('home')) {
+    showPage('home');
+    speak('Volviendo al inicio');
+  }
+  else if (command.includes('turno') || command.includes('mis cita') || command.includes('ver cita')) {
+    showPage('appointments');
+    speak('Aquí puedes ver tus próximos turnos.');
+  }
+  else if (command.includes('reserv') || command.includes('pedir cita') || command.includes('sacar cita')) {
+    showPage('booking');
+    speak('Vamos a reservar una cita. Completa los datos del formulario.');
+  }
+  else if (command.includes('consulta') || command.includes('especialidad') || command.includes('médico')) {
+    showPage('medical');
+    speak('Estas son nuestras especialidades médicas.');
+  }
+  else if (command.includes('aprende') || command.includes('educación') || command.includes('salud')) {
+    showPage('education');
+    speak('Bienvenido a la sección educativa de salud.');
+  }
+  else if (command.includes('ayuda')) {
+    showPage('help');
+    speak('Estás en la sección de ayuda. Aquí encontrarás instrucciones de uso.');
+  }
+  else if (command.includes('salir') || command.includes('cerrar')) {
+    speak('Para salir, puedes cerrar esta pestaña de tu navegador. Tus datos de demostración permanecen en este dispositivo.');
+    toast('Puedes cerrar esta pestaña para salir.');
+  }
+  else {
+    speak('No comprendí el comando. Puedes decir inicio, ver turnos, reservar, ayuda o salir.');
+    toast('Comando no reconocido. Intenta nuevamente.');
+  }
+}
+
+// SELECCIÓN DIRECTA DE ESPECIALIDAD
+function bookSpecialty(name) {
+  showPage('booking');
+  document.getElementById('specialty').value = name;
+  speak('Seleccionaste ' + name + '. Completa el formulario para solicitar tu turno.');
+}
+
+// FECHA MÍNIMA: HOY
+const dateInput = document.getElementById('date');
+const today = new Date();
+const localDate = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
+  .toISOString().split('T')[0];
+dateInput.min = localDate;
+
+// GUARDAR CITAS DE DEMOSTRACIÓN EN LOCALSTORAGE
+function getAppointments() {
+  try {
+    return JSON.parse(localStorage.getItem('saludCitas')) || [];
+  } catch {
+    return [];
+  }
+}
+
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const appointment = {
+    patient: document.getElementById('patient').value.trim(),
+    specialty: document.getElementById('specialty').value,
+    center: document.getElementById('center').value,
+    doctor: document.getElementById('doctor').value,
+    date: document.getElementById('date').value,
+    time: document.getElementById('time').value
+  };
+
+  if (!appointment.patient) {
+    toast('Por favor escribe tu nombre.');
+    return;
+  }
+
+  const appointments = getAppointments();
+  appointments.push(appointment);
+  localStorage.setItem('saludCitas', JSON.stringify(appointments));
+
+  this.reset();
+  dateInput.min = localDate;
+
+  showPage('appointments');
+  speak('Tu solicitud de cita se registró correctamente.');
+  toast('¡Cita registrada correctamente!');
+});
+
+// MOSTRAR TURNOS
+function renderAppointments() {
+  const list = document.getElementById('appointmentList');
+  const appointments = getAppointments();
+
+  if (!appointments.length) {
+    list.innerHTML = '<div class="card"><p>Aún no tienes citas reservadas.</p><p>Presiona el botón para solicitar tu primer turno.</p></div>';
+    return;
+  }
+
+  list.innerHTML = '';
+
+  appointments.forEach((appointment, index) => {
+    const div = document.createElement('div');
+    div.className = 'appointment card';
+
+    const title = document.createElement('h3');
+    title.textContent = '📅 ' + appointment.specialty;
+
+    const details = document.createElement('p');
+    details.textContent =
+      'Paciente: ' + appointment.patient +
+      ' | Centro: ' + appointment.center +
+      ' | Profesional: ' + appointment.doctor +
+      ' | Fecha: ' + appointment.date +
+      ' | Hora: ' + appointment.time;
+
+    const cancel = document.createElement('button');
+    cancel.className = 'secondary-btn';
+    cancel.textContent = 'Cancelar cita';
+    cancel.addEventListener('click', () => {
+      const updated = getAppointments();
+      updated.splice(index, 1);
+      localStorage.setItem('saludCitas', JSON.stringify(updated));
+      renderAppointments();
+      toast('Cita cancelada');
+      speak('Cita cancelada');
+    });
+
+    div.append(title, details, cancel);
+    list.appendChild(div);
+  });
+}
+
+// ATAJOS DE TECLADO
+document.addEventListener('keydown', function(e) {
+  if (e.altKey && e.key.toLowerCase() === 'h') {
+    showPage('home');
+  }
+  if (e.altKey && e.key.toLowerCase() === 'r') {
+    showPage('booking');
+  }
+  if (e.altKey && e.key.toLowerCase() === 't') {
+    showPage('appointments');
+  }
+});
+
+// INICIO
+renderAppointments();
+</script>
+
+</body>
+</html>
